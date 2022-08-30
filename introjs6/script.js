@@ -13,5 +13,5 @@ function sum (a, b, callbackfunction){
 //const a = sum(2, 2);
 //console.log(a);
 sum(2, 2, function(result){
-    console.log(result2);
+    console.log(result);
 });
