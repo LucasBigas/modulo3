@@ -1,0 +1,45 @@
+.container{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 30px;
+    grid-template-areas: 'titulo titulo'
+    'tl amd'
+    'nvidia nvidia'
+    'voltar voltar';
+
+}
+.titulo{
+    grid-area: titulo;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border:solid 3px black
+}
+.TL{
+    grid-area: tl;
+    border: solid 3px black;
+    text-align: center;
+}
+.AMD{
+    grid-area: amd;
+    border: solid 3px black;
+    text-align: center;
+}
+.NVIDIA{
+    grid-area: nvidia;
+    border: solid 3px black;
+    text-align: center;
+}
+.voltar{
+    grid-area: voltar;
+    border: solid 3px black;
+}
+img{
+   width: 800px;
+   height: 500px;
+    
+    
+}
+body{
+    background-color: azure;
+}

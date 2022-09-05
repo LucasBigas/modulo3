@@ -1,0 +1,52 @@
+.container{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 30px;
+    grid-template-areas: 'titulo busca'
+    'menu menu'
+    'promocao promocao2';
+}
+
+img{
+    height: 100%;
+    height: 500px;
+    width: 500px;
+
+}
+.promocao{
+    text-align: center;
+    grid-area: promocao;
+    border: solid 3px black;
+}
+.promocao2{
+    text-align: center;
+    grid-area: promocao2;
+    border: solid 3px black;
+}
+.titulo {
+    grid-area: titulo;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: solid 3px black;
+}
+.busca {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    grid-area: busca;
+    border: solid 3px black;
+}
+.menu {
+    grid-area: menu;
+    border: solid 3px black;
+}
+li {
+    margin: 20px 0px 20px;
+}
+ul {
+    list-style: none;
+}
+body{
+    background-color: azure;
+}
