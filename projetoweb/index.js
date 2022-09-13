@@ -50,8 +50,15 @@ app.post("/clientes/save", function(req,res){
     // criando um novo objeto JS com atributo nome
     //Math.max()
 
-    let maiorid = Math.max(...fakeData.map(o => o.id));
-    if(maiorid == -Infinity) maiorid = 0;
+    let maiorid = Math.max(...fakeData.map( o => o.id ));
+    if (maiorid == -Infinity) maiorid = 0;
+    /*
+        const fakedata = [ {id: 1, nome: 'ze'}, {id: 2, nome: 'lu'}];
+        fakeData.map( o => o.id ) Transforma em
+        const outralista = [ {id: 1}, {id: 2}];
+        ...fakeData.map( o => o.id ) Transforma em
+        const listanumeros = [1,2];
+    */
     let novoCliente = {
         id: maiorid + 1,
         nome: req.body.nome,
