@@ -46,7 +46,22 @@ app.get("/clientes/novo", function(req,res){
 });
 
 app.post("/clientes/save", function(req,res){
-    console.log(req.body);
+    //console.log(req.body.nome);
+    // criando um novo objeto JS com atributo nome
+    //Math.max()
+
+    let maiorid = Math.max(...fakeData.map(o => o.id));
+    if(maiorid == -Infinity) maiorid = 0;
+    let novoCliente = {
+        id: maiorid + 1,
+        nome: req.body.nome,
+        endereco: req.body.endereco,
+        sexo: req.body.sexo,
+        telefone: req.body.telefone
+        
+    };
+    fakeData.push(novoCliente);
+    res.redirect('/clientes')
 });
 
 app.listen(3000, () =>{ //CALLBACK
