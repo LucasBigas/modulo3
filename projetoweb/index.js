@@ -53,33 +53,42 @@ app.get("/clientes/alterar/:id", function(req,res){
 });
 
 app.post("/clientes/save", function(req,res){
-    //console.log(req.body.nome);
+    //console.log(req.body);
     // Criando um novo objeto JS com o atributo nome
     //Math.max()
-
     if(req.body.nome === ""){
         //res.redirect("/clientes");
         res.render('cliente/formcliente',{cliente: req.body});
         return;
     }
 
-    let maiorid = Math.max(...fakeData.map( o => o.id ));
-    if (maiorid == -Infinity) maiorid = 0;
-    /*
-        const fakedata = [ {id: 1, nome: 'ze'}, {id: 2, nome: 'lu'}];
-        fakeData.map( o => o.id ) Transforma em
-        const outralista = [ {id: 1}, {id: 2}];
-        ...fakeData.map( o => o.id ) Transforma em
-        const listanumeros = [1,2];
-    */
-    let novoCliente = {
-        id: maiorid + 1,
-        nome: req.body.nome,
-        endereco: req.body.endereco,
-        sexo: req.body.sexo,
-        telefone: req.body.telefone
-    };
-    fakeData.push(novoCliente);
+    let clienteantigo = fakeData.find( o => o.id == req.body.id);
+
+    if(clienteantigo != undefined){
+        clienteantigo.nome = req.body.nome;
+        clienteantigo.endereco = req.body.endereco;
+        clienteantigo.sexo = req.body.sexo;
+        clienteantigo.telefone = req.body.telefone;
+    }else{
+
+        let maiorid = Math.max(...fakeData.map( o => o.id ));
+        if (maiorid == -Infinity) maiorid = 0;
+        /*
+            const fakedata = [ {id: 1, nome: 'ze'}, {id: 2, nome: 'lu'}];
+            fakeData.map( o => o.id ) Transforma em
+            const outralista = [ {id: 1}, {id: 2}];
+            ...fakeData.map( o => o.id ) Transforma em
+            const listanumeros = [1,2];
+        */
+        let novoCliente = {
+            id: maiorid + 1,
+            nome: req.body.nome,
+            endereco: req.body.endereco,
+            sexo: req.body.sexo,
+            telefone: req.body.telefone
+        };
+        fakeData.push(novoCliente);
+    }
     res.redirect("/clientes");
 });
 
