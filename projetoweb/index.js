@@ -45,10 +45,23 @@ app.get("/clientes/novo", function(req,res){
     res.render("cliente/formcliente");
 });
 
+app.get("/clientes/alterar/:id", function(req,res){
+    let id = req.params['id'];
+    let umcliente = fakeData.find(o => o.id == id);
+    
+    res.render('cliente/formcliente',{cliente: umcliente});
+});
+
 app.post("/clientes/save", function(req,res){
     //console.log(req.body.nome);
-    // criando um novo objeto JS com atributo nome
+    // Criando um novo objeto JS com o atributo nome
     //Math.max()
+
+    if(req.body.nome === ""){
+        //res.redirect("/clientes");
+        res.render('cliente/formcliente',{cliente: req.body});
+        return;
+    }
 
     let maiorid = Math.max(...fakeData.map( o => o.id ));
     if (maiorid == -Infinity) maiorid = 0;
@@ -65,10 +78,9 @@ app.post("/clientes/save", function(req,res){
         endereco: req.body.endereco,
         sexo: req.body.sexo,
         telefone: req.body.telefone
-        
     };
     fakeData.push(novoCliente);
-    res.redirect('/clientes')
+    res.redirect("/clientes");
 });
 
 app.listen(3000, () =>{ //CALLBACK
