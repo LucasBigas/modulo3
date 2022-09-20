@@ -19,32 +19,38 @@ const fakeData = [
 ];
 //GET /api/v1/clientes - consulta que retorna todos os registros
 app.get("/api/v1/clientes", (req,res) =>{
-    //writeHead 1 define o HTTP Status + headers da resposta
+    //writeHead define o HTTP Status + headers da resposta
     res.writeHead(200,{"Content-Type": "application/json"});
     res.end(JSON.stringify(fakeData));
 });
 
 app.get("/api/v1/clientes/:id", (req,res)=>{
-    let result = fakeData.find(o => o.id == req.params.id);
-    let httpstatus = 200;
-    if(result==undefined){
-        httpstatus = 404;
+    //BUSCAR O CLIENTE PELO ID
+    let httpStatus = 200;
+    let resultado = fakeData.find(o => o.id == req.params.id);
+    //VERIFICAR SE HOUVE RESULTADO
+    if(resultado == undefined){
+        httpStatus = 404;
     }
-    res.writeHead(httpstatus,{"Content-Type": "application/json"});
-    res.end(JSON.stringify(result));
-  
+    //RETORNAR
+    res.writeHead(httpStatus,{"Content-Type": "application/json"});
+    res.end(JSON.stringify(resultado));
 });
 
-app.get("/api/v1/clientes/nome/:nome",(req,res)=>{
-    let httpstatus = 200;
-    let result = fakeData.find(o => o.nome.includes(req.params.nome));
-    if(result == undefined){
-        httpstatus = 404;
+app.get("/api/v1/clientes/nome/:nome", (req,res) =>{
+    let httpStatus = 200;
+
+    let resultado = fakeData.find(o => o.nome.includes(req.params.nome));
+    if (resultado == undefined){
+        httpStatus = 404;
     }
-    res.writeHead(httpstatus,{"Content-Type":"application/json"});
-    res.end(JSON.stringify(result));
+    res.writeHead(httpStatus,{"Content-Type": "application/json"});
+    res.end(JSON.stringify(resultado));
 });
 
+app.post("/api/v1/clientes", (req,res)=>{
+    console.log(req.body);
+});
 
 app.listen(3000, () =>{ //CALLBACK
     console.log("Servidor online");

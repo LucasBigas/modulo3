@@ -53,3 +53,14 @@ Utilizadas para testar a API
 - HTTP Status Code 400 - Bad request - se o corpo nao possuir um objeto
 - Header Resposta
     - Content-Type = application/json (Tipo do informaçao retornada pela api)
+
+
+### Endpoint PUT /api/v1/clientes/{id}
+- Verbo PUT do protocolo HTTP
+- Objetivo: recebe no corpo (body) da requisiçao um objeto, utilizando o parametro id da URL, procurar pelo cliente e entao atualizar o cliente com objeto recebido no corpo do body 
+- HTTP Status Code 200 - Sucesso 
+- HTTP Status Code 400 - Bad request - se o corpo nao possuir um objeto
+- HTTP Status Code 404 - Not Found 
+- Resposta: o objeto alterado 
+- Header Resposta
+    - Content-Type = application/json (Tipo do informaçao retornada pela api)

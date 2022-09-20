@@ -5,3 +5,13 @@ GET http://localhost:3000/api/v1/clientes/1
 ###
 GET http://localhost:3000/api/v1/clientes/nome/Zezinho
 ###
+POST http://localhost:3000/api/v1/clientes
+Content-Type: application/json
+
+{
+    "nome": "Huguinho",
+    "endereco": "rua lelele 300",
+    "sexo": "Masculino",
+    "telefone": "5555-4444"
+}
+###
