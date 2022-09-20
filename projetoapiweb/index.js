@@ -24,6 +24,27 @@ app.get("/api/v1/clientes", (req,res) =>{
     res.end(JSON.stringify(fakeData));
 });
 
+app.get("/api/v1/clientes/:id", (req,res)=>{
+    let result = fakeData.find(o => o.id == req.params.id);
+    let httpstatus = 200;
+    if(result==undefined){
+        httpstatus = 404;
+    }
+    res.writeHead(httpstatus,{"Content-Type": "application/json"});
+    res.end(JSON.stringify(result));
+  
+});
+
+app.get("/api/v1/clientes/nome/:nome",(req,res)=>{
+    let httpstatus = 200;
+    let result = fakeData.find(o => o.nome.includes(req.params.nome));
+    if(result == undefined){
+        httpstatus = 404;
+    }
+    res.writeHead(httpstatus,{"Content-Type":"application/json"});
+    res.end(JSON.stringify(result));
+});
+
 
 app.listen(3000, () =>{ //CALLBACK
     console.log("Servidor online");
