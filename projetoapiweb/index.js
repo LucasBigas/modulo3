@@ -52,7 +52,13 @@ app.get("/api/v1/clientes/nome/:nome", (req,res) =>{
 });
 
 app.post("/api/v1/clientes", (req,res)=>{
-    console.log(req.body);
+    let novoCliente = req.body;
+    let maiorID = Math.max(...fakeData.map(o => o.id ));
+    if(maiorID == Infinity) maiorID = 0;
+    novoCliente.id = maiorID + 1;
+
+    res.writeHead(200,{"Content-Type":"application/json"});
+    res.end(JSON.stringify(novoCliente));
 });
 
 app.listen(3000, () =>{ //CALLBACK
