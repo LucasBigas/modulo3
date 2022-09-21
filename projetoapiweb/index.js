@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 //DICA
 const bodyparser = require('body-parser');
-app.use(bodyparser.json())
+app.use(bodyparser.json());
 
 const fakeData = [
     {
@@ -52,12 +52,24 @@ app.get("/api/v1/clientes/nome/:nome", (req,res) =>{
 });
 
 app.post("/api/v1/clientes", (req,res)=>{
+    let httpStatus = 201;
+    //recuperando o cliente de dentro do Body da requisição
     let novoCliente = req.body;
-    let maiorID = Math.max(...fakeData.map(o => o.id ));
-    if(maiorID == Infinity) maiorID = 0;
-    novoCliente.id = maiorID + 1;
+    if (!novoCliente.hasOwnProperty('nome')){
+        httpStatus = 400; //Bad Request
+    }else{
+        //descobrindo o maior ID já cadastrado de clientes
+        let maiorid = Math.max(...fakeData.map( o => o.id ));
+        //validação caso lista fakeData esteja vazia
+        if (maiorid == -Infinity) maiorid = 0;
+        //adiciono 1 ao maior id dos clientes e gravo novo Cliente
+        novoCliente.id = maiorid + 1;
 
-    res.writeHead(200,{"Content-Type":"application/json"});
+        //inserir o novo cliente na lista fakeData
+        fakeData.push(novoCliente);//guarda o cliente
+    }
+    //devolvo o objeto cliente para quem chamou
+    res.writeHead(httpStatus,{"Content-Type": "application/json"});
     res.end(JSON.stringify(novoCliente));
 });
 
