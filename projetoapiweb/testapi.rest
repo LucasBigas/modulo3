@@ -25,3 +25,5 @@ Content-Type: application/json
     "telefone": "5555-6666"
 }
 ###
+DELETE  http://localhost:3000/api/v1/clientes/1
+###

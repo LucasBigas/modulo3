@@ -64,3 +64,12 @@ Utilizadas para testar a API
 - Resposta: o objeto alterado 
 - Header Resposta
     - Content-Type = application/json (Tipo do informaçao retornada pela api)
+
+### Endpoint DELETE /api/v1/clientes/{id}
+- Verbo DELETE do protocolo HTTP
+- Objeto: receber o id pela URL e remover o objeto do sistema
+- HTTP Status Code 200 - sucesso
+- HTTP Status Code 404 - Not Found
+- Resposta: o objeto excluido 
+- Header Resposta 
+    - Content-Type = application/json (tipo do informaçao retornada pela API)
